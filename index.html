@@ -334,30 +334,51 @@
             },
             {
                 title: '數據驅動',
-                description: '透過分析學員在數位學習平台上的行為數據（如：作答時間、錯誤類型、影片觀看完成率），AI 能以超過 80% 的準確率預測 PGY 的留任率，讓教學部能及早介入關懷。在 OSCE 評量上，AI 影像分析更能客觀、一致地評分，將考官間的評分信度提升至近乎完美的 Kappa 0.8，確保評量的公平性與準確性。',
+                description: '整合學員的多元數據，從「被動管理」轉向「主動預測與介入」，以數據驅動個人化的教學輔導，並確保評量品質。',
                 source: '來源: Yang Ching-Chian / 清邁大學團隊',
                 svg: `
-                    <svg viewBox="0 0 400 250" class="w-full h-auto max-w-lg svg-animate">
-                        <!-- Central AI Brain -->
-                        <circle cx="200" cy="125" r="40" fill="#38bdf8" style="animation-delay: 0.1s;"/>
-                        <text x="200" y="130" font-size="14" fill="white" text-anchor="middle" font-weight="bold" style="animation-delay: 0.2s;">AI</text>
+                    <svg viewBox="0 0 400 250" class="w-full h-auto max-w-2xl svg-animate">
                         <!-- Data Inputs -->
-                        <path d="M100 75 L 170 115 M100 175 L 170 135 M300 75 L 230 115 M300 175 L 230 135" stroke="#7dd3fc" stroke-width="2" fill="none" style="animation-delay: 0.3s;"/>
-                        <!-- Left Data Pod -->
-                        <g transform="translate(30, 50)" style="animation-delay: 0.4s;">
-                            <rect width="100" height="50" fill="#f0f9ff" rx="10"/>
-                            <text x="50" y="25" font-size="12" text-anchor="middle" fill="#0c4a6e">人才留任預測</text>
-                            <text x="50" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#0ea5e9">>80% 準確率</text>
+                        <g style="animation-delay: 0.1s;">
+                            <rect x="10" y="20" width="100" height="50" rx="10" fill="#e0f2fe"/>
+                            <text x="60" y="48" text-anchor="middle" font-size="12" fill="#0c4a6e">📊 OSCE 評量</text>
                         </g>
-                        <!-- Bottom Data Pod -->
-                        <g transform="translate(30, 150)" style="animation-delay: 0.5s;">
-                            <rect width="100" height="50" fill="#f0f9ff" rx="10"/>
-                            <text x="50" y="25" font-size="12" text-anchor="middle" fill="#0c4a6e">OSCE 評分信度</text>
-                            <text x="50" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#0ea5e9">Kappa 0.8</text>
+                        <g style="animation-delay: 0.2s;">
+                            <rect x="10" y="100" width="100" height="50" rx="10" fill="#e0f2fe"/>
+                            <text x="60" y="128" text-anchor="middle" font-size="12" fill="#0c4a6e">💻 線上學習行為</text>
                         </g>
-                        <!-- Right Side Text -->
-                        <text x="300" y="120" font-size="14" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.6s;">識別學習瓶頸</text>
-                        <text x="300" y="140" font-size="14" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.7s;">提供個人化輔導</text>
+                        <g style="animation-delay: 0.3s;">
+                            <rect x="10" y="180" width="100" height="50" rx="10" fill="#e0f2fe"/>
+                            <text x="60" y="208" text-anchor="middle" font-size="12" fill="#0c4a6e">📝 課程回饋</text>
+                        </g>
+
+                        <!-- Central AI Engine -->
+                        <g style="animation-delay: 0.4s;">
+                            <circle cx="200" cy="125" r="45" fill="#38bdf8"/>
+                            <text x="200" y="120" text-anchor="middle" font-size="14" fill="white" font-weight="bold">AI 分析</text>
+                            <text x="200" y="140" text-anchor="middle" font-size="14" fill="white" font-weight="bold">引擎</text>
+                        </g>
+
+                        <!-- Arrows from left to center -->
+                        <path d="M110 45 L 155 110" stroke="#7dd3fc" stroke-width="2" fill="none" style="animation-delay: 0.5s;"/>
+                        <path d="M110 125 L 155 125" stroke="#7dd3fc" stroke-width="2" fill="none" style="animation-delay: 0.5s;"/>
+                        <path d="M110 205 L 155 140" stroke="#7dd3fc" stroke-width="2" fill="none" style="animation-delay: 0.5s;"/>
+
+                        <!-- Outputs -->
+                        <g style="animation-delay: 0.6s;">
+                             <rect x="280" y="50" width="110" height="60" rx="10" fill="#fef9c3"/>
+                             <text x="335" y="75" text-anchor="middle" font-size="12" fill="#713f12" font-weight="bold">⚠️ 高風險學員預警</text>
+                             <text x="335" y="95" text-anchor="middle" font-size="10" fill="#713f12">>80% 留任預測</text>
+                        </g>
+                         <g style="animation-delay: 0.7s;">
+                             <rect x="280" y="140" width="110" height="60" rx="10" fill="#dcfce7"/>
+                             <text x="335" y="165" text-anchor="middle" font-size="12" fill="#14532d" font-weight="bold">🎯 個人化路徑建議</text>
+                             <text x="335" y="185" text-anchor="middle" font-size="10" fill="#14532d">Kappa 0.8 評量信度</text>
+                        </g>
+
+                         <!-- Arrows from center to right -->
+                        <path d="M245 100 L 280 75" stroke="#a3e635" stroke-width="2" fill="none" style="animation-delay: 0.8s;"/>
+                        <path d="M245 150 L 280 175" stroke="#fcd34d" stroke-width="2" fill="none" style="animation-delay: 0.8s;"/>
                     </svg>`
             },
             {
@@ -456,6 +477,15 @@
         dotsContainer.addEventListener('click', (e) => {
             if(e.target.tagName === 'BUTTON'){
                 showSlide(parseInt(e.target.dataset.index));
+            }
+        });
+
+        // 新增鍵盤左右鍵控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                showSlide((currentSlide + 1) % insightsData.length);
+            } else if (e.key === 'ArrowLeft') {
+                showSlide((currentSlide - 1 + insightsData.length) % insightsData.length);
             }
         });
 
