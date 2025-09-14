@@ -66,6 +66,24 @@
             z-index: 1;
         }
 
+        /* 輪播樣式 */
+        .carousel-slide {
+            display: none;
+        }
+        .carousel-slide.active {
+            display: flex;
+        }
+        /* SVG 動畫 */
+        .svg-animate path, .svg-animate rect, .svg-animate circle, .svg-animate text {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
     </style>
 </head>
 <body>
@@ -87,49 +105,25 @@
             </div>
         </section>
 
-        <!-- Section 2: 核心洞見 (已更新來源) -->
+        <!-- Section 2: 核心洞見 (全新互動圖設計) -->
         <section class="scroll-section bg-sky-50">
-            <div class="w-full max-w-7xl mx-auto">
-                <div class="reveal-on-scroll">
-                    <h2 class="text-center text-5xl md:text-6xl font-bold text-sky-600 mb-12">五大核心啟示</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-                        
-                        <div class="flex flex-col">
-                            <span class="text-8xl">🤖</span>
-                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">AI 考官 & 完整模擬</h3>
-                            <p class="text-slate-600 text-lg px-2">最佳模式為「人機協作」，或由AI分飾病人、考生與考官進行完整模擬，測試教案可行性。</p>
-                            <footer class="text-xs text-sky-700 mt-auto pt-2">來源: Arthur Pizzigars / 清邁大學團隊</footer>
-                        </div>
-                        
-                        <div class="flex flex-col">
-                            <span class="text-8xl">🎮</span>
-                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">遊戲化學習</h3>
-                            <p class="text-slate-600 text-lg px-2">線上密室逃脫等方式，證實能將國考失敗率從35%降至22%，有效驅動學習成效。</p>
-                            <footer class="text-xs text-sky-700 mt-auto pt-2">來源: Cindy Lee / 泰國團隊</footer>
-                        </div>
-                        
-                        <div class="flex flex-col">
-                            <span class="text-8xl">📈</span>
-                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">數據驅動</h3>
-                            <p class="text-slate-600 text-lg px-2">AI能以>80%的準確率預測PGY留任率，並將OSCE評分信度提升至近乎完美(Kappa 0.8)。</p>
-                             <footer class="text-xs text-sky-700 mt-auto pt-2">來源: Yang Ching-Chian / 清邁大學團隊</footer>
-                        </div>
-                        
-                        <div class="flex flex-col">
-                            <span class="text-8xl">🚀</span>
-                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">遞迴學習</h3>
-                            <p class="text-slate-600 text-lg px-2">AI將學會「自我進化」！此概念為設計能持續迭代的個人化、自適應教學系統提供了藍圖。</p>
-                            <footer class="text-xs text-sky-700 mt-auto pt-2">來源: Ken Masters</footer>
-                        </div>
-                        
-                        <div class="flex flex-col">
-                            <span class="text-8xl">⚖️</span>
-                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">倫理挑戰</h3>
-                            <p class="text-slate-600 text-lg px-2">當AI決策出錯，誰該負責？如何避免核心技能退化？人機情感連結的準則為何？皆是導入前需深思的課題。</p>
-                             <footer class="text-xs text-sky-700 mt-auto pt-2">來源: Rakesh Patel / Ken Masters</footer>
-                        </div>
+            <div class="w-full h-full flex flex-col items-center justify-center reveal-on-scroll">
+                <h2 class="text-center text-5xl md:text-6xl font-bold text-sky-600 mb-4">五大核心啟示</h2>
+                
+                <div id="insightsCarousel" class="w-full flex-grow flex items-center justify-center">
+                    <!-- Carousel Slides will be injected here by JS -->
+                </div>
 
+                <div class="flex items-center justify-between w-full max-w-4xl px-4">
+                    <button id="prevBtn" class="p-3 rounded-full bg-white/70 backdrop-blur-sm shadow-md text-sky-600 hover:bg-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <div id="carouselDots" class="flex space-x-3">
+                        <!-- Dots will be injected here by JS -->
                     </div>
+                    <button id="nextBtn" class="p-3 rounded-full bg-white/70 backdrop-blur-sm shadow-md text-sky-600 hover:bg-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
                 </div>
             </div>
         </section>
@@ -229,107 +223,7 @@
     <script>
         // 初始化 particles.js
         particlesJS("particles-js", {
-          "particles": {
-            "number": {
-              "value": 80,
-              "density": {
-                "enable": true,
-                "value_area": 800
-              }
-            },
-            "color": {
-              "value": "#ffffff"
-            },
-            "shape": {
-              "type": "circle",
-              "stroke": {
-                "width": 0,
-                "color": "#000000"
-              },
-            },
-            "opacity": {
-              "value": 0.5,
-              "random": false,
-              "anim": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-              }
-            },
-            "size": {
-              "value": 3,
-              "random": true,
-              "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-              }
-            },
-            "line_linked": {
-              "enable": true,
-              "distance": 150,
-              "color": "#ffffff",
-              "opacity": 0.4,
-              "width": 1
-            },
-            "move": {
-              "enable": true,
-              "speed": 2,
-              "direction": "none",
-              "random": false,
-              "straight": false,
-              "out_mode": "out",
-              "bounce": false,
-              "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-              }
-            }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-              "onhover": {
-                "enable": true,
-                "mode": "repulse"
-              },
-              "onclick": {
-                "enable": true,
-                "mode": "push"
-              },
-              "resize": true
-            },
-            "modes": {
-              "grab": {
-                "distance": 400,
-                "line_linked": {
-                  "opacity": 1
-                }
-              },
-              "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 8,
-                "speed": 3
-              },
-              "repulse": {
-                "distance": 200,
-                "duration": 0.4
-              },
-              "push": {
-                "particles_nb": 4
-              },
-              "remove": {
-                "particles_nb": 2
-              }
-            }
-          },
-          "retina_detect": true
-        });
+          "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
 
         // 動畫觸發
         const observer = new IntersectionObserver((entries) => {
@@ -340,20 +234,200 @@
                     target.querySelectorAll('.reveal-on-scroll > *').forEach((child, index) => {
                          child.style.transitionDelay = `${index * 150}ms`;
                     });
-                } else {
-                    // 如果希望動畫重複觸發，可以取消註解下一行
-                    // target.classList.remove('is-visible');
                 }
             });
-        }, {
-            threshold: 0.3 
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // 核心洞見輪播邏輯
+        const insightsData = [
+            {
+                title: 'AI 考官 & 完整模擬',
+                description: '最佳模式為「人機協作」，或由AI分飾病人、考生與考官進行完整模擬，測試教案可行性。',
+                source: '來源: Arthur Pizzigars / 清邁大學團隊',
+                svg: `
+                    <svg viewBox="0 0 400 250" class="w-full h-auto max-w-2xl svg-animate">
+                        <defs><clipPath id="circleClip"><circle cx="50" cy="50" r="25"/></clipPath></defs>
+                        <!-- Human Expert -->
+                        <circle cx="50" cy="50" r="25" fill="#e0f2fe"/>
+                        <image href="https://img.icons8.com/ios/50/475569/user-male-circle.png" x="25" y="25" height="50" width="50" clip-path="url(#circleClip)" style="animation-delay: 0.1s;"/>
+                        <text x="50" y="90" font-size="12" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.2s;">人類專家</text>
+                        <!-- AI Bots -->
+                        <g transform="translate(150, 20)" style="animation-delay: 0.3s;">
+                           <rect width="220" height="210" fill="#f0f9ff" rx="10"/>
+                           <text x="110" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#0ea5e9">OSCE 模擬場景</text>
+                           <circle cx="50" cy="80" r="20" fill="#bae6fd"/><text x="50" y="115" font-size="10" text-anchor="middle" fill="#0c4a6e">🤖 AI 病人</text>
+                           <circle cx="110" cy="80" r="20" fill="#bae6fd"/><text x="110" y="115" font-size="10" text-anchor="middle" fill="#0c4a6e">🤖 AI 考生</text>
+                           <circle cx="170" cy="80" r="20" fill="#bae6fd"/><text x="170" y="115" font-size="10" text-anchor="middle" fill="#0c4a6e">🤖 AI 考官</text>
+                           <path d="M50 130 C 110 150, 110 150, 170 130" stroke="#7dd3fc" stroke-width="2" fill="none" stroke-dasharray="4"/>
+                           <path d="M70 80 H 90 M130 80 H 150" stroke="#7dd3fc" stroke-width="2" fill="none"/>
+                        </g>
+                         <!-- Connection Lines -->
+                        <path d="M78 55 C 120 40, 120 40, 160 35" stroke="#38bdf8" stroke-width="2" fill="none" stroke-dasharray="5,5" style="animation-delay: 0.4s;"/>
+                        <path d="M75 75 C 100 150, 120 180, 150 200" stroke="#38bdf8" stroke-width="2" fill="none" stroke-dasharray="5,5" style="animation-delay: 0.5s;"/>
+                        <text x="105" y="150" font-size="10" fill="#0ea5e9" transform="rotate(-30, 105, 150)" style="animation-delay: 0.6s;">監督 & 審核</text>
+                    </svg>`
+            },
+            {
+                title: '遊戲化學習',
+                description: '線上密室逃脫等方式，證實能將國考失敗率從35%降至22%，有效驅動學習成效。',
+                source: '來源: Cindy Lee / 泰國團隊',
+                svg: `
+                    <svg viewBox="0 0 400 250" class="w-full h-auto max-w-2xl svg-animate">
+                        <!-- Teacher designing game -->
+                        <g transform="translate(50, 50)" style="animation-delay: 0.1s;">
+                            <circle cx="30" cy="30" r="20" fill="#fecaca"/>
+                            <text x="30" y="35" font-size="20">🧑‍🏫</text>
+                            <text x="30" y="65" font-size="12" text-anchor="middle" fill="#7f1d1d">教師設計</text>
+                        </g>
+                        <!-- Arrow -->
+                        <path d="M90 70 C 130 30, 170 30, 210 70" stroke="#fb923c" stroke-width="3" fill="none" stroke-dasharray="5,5" style="animation-delay: 0.2s;"/>
+                         <!-- Students playing online -->
+                        <g transform="translate(200, 80)" style="animation-delay: 0.3s;">
+                           <rect x="0" y="0" width="180" height="120" fill="#dbeafe" rx="10"/>
+                           <rect x="5" y="5" width="170" height="110" fill="white" rx="5"/>
+                           <circle cx="35" cy="40" r="15" fill="#bfdbfe" style="animation-delay: 0.4s;"/><text x="35" y="45" font-size="15">🧑‍🎓</text>
+                           <circle cx="90" cy="40" r="15" fill="#bfdbfe" style="animation-delay: 0.5s;"/><text x="90" y="45" font-size="15">🕹️</text>
+                           <circle cx="145" cy="40" r="15" fill="#bfdbfe" style="animation-delay: 0.6s;"/><text x="145" y="45" font-size="15">💡</text>
+                           <text x="90" y="90" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e3a8a">線上遊戲化學習</text>
+                        </g>
+                         <!-- Traditional classroom crossed out -->
+                        <g transform="translate(50, 150)" style="animation-delay: 0.7s;">
+                           <text x="30" y="30" font-size="25">👨‍🏫</text>
+                           <text x="70" y="30" font-size="25">📚</text>
+                           <text x="30" y="60" font-size="12" fill="#64748b">傳統教室</text>
+                           <path d="M20 10 L 90 70 M 90 10 L 20 70" stroke="#ef4444" stroke-width="4" />
+                        </g>
+                    </svg>`
+            },
+            {
+                title: '數據驅動',
+                description: 'AI能以>80%的準確率預測PGY留任率，並將OSCE評分信度提升至近乎完美(Kappa 0.8)。',
+                source: '來源: Yang Ching-Chian / 清邁大學團隊',
+                svg: `
+                    <svg viewBox="0 0 400 250" class="w-full h-auto max-w-lg svg-animate">
+                        <!-- Central AI Brain -->
+                        <circle cx="200" cy="125" r="40" fill="#38bdf8" style="animation-delay: 0.1s;"/>
+                        <text x="200" y="130" font-size="14" fill="white" text-anchor="middle" font-weight="bold" style="animation-delay: 0.2s;">AI</text>
+                        <!-- Data Inputs -->
+                        <path d="M100 75 L 170 115 M100 175 L 170 135 M300 75 L 230 115 M300 175 L 230 135" stroke="#7dd3fc" stroke-width="2" fill="none" style="animation-delay: 0.3s;"/>
+                        <!-- Left Data Pod -->
+                        <g transform="translate(30, 50)" style="animation-delay: 0.4s;">
+                            <rect width="100" height="50" fill="#f0f9ff" rx="10"/>
+                            <text x="50" y="25" font-size="12" text-anchor="middle" fill="#0c4a6e">人才留任預測</text>
+                            <text x="50" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#0ea5e9">>80% 準確率</text>
+                        </g>
+                        <!-- Bottom Data Pod -->
+                        <g transform="translate(30, 150)" style="animation-delay: 0.5s;">
+                            <rect width="100" height="50" fill="#f0f9ff" rx="10"/>
+                            <text x="50" y="25" font-size="12" text-anchor="middle" fill="#0c4a6e">OSCE 評分信度</text>
+                            <text x="50" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#0ea5e9">Kappa 0.8</text>
+                        </g>
+                        <!-- Right Side Text -->
+                        <text x="300" y="120" font-size="14" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.6s;">識別學習瓶頸</text>
+                        <text x="300" y="140" font-size="14" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.7s;">提供個人化輔導</text>
+                    </svg>`
+            },
+            {
+                title: '遞迴學習',
+                description: 'AI將學會「自我進化」！此概念為設計能持續迭代的個人化、自適應教學系統提供了藍圖。',
+                source: '來源: Ken Masters',
+                svg: `
+                    <svg viewBox="0 0 400 250" class="w-full h-auto max-w-lg svg-animate">
+                         <!-- Recursive loop -->
+                        <g style="animation-delay: 0.1s;"><circle cx="100" cy="125" r="30" fill="#e0f2fe"/><text x="100" y="130" font-size="10" text-anchor="middle" fill="#0c4a6e">AI v1</text></g>
+                        <g style="animation-delay: 0.2s;"><circle cx="200" cy="125" r="40" fill="#bae6fd"/><text x="200" y="130" font-size="12" text-anchor="middle" fill="#0c4a6e">AI v2</text></g>
+                        <g style="animation-delay: 0.3s;"><circle cx="300" cy="125" r="50" fill="#7dd3fc"/><text x="300" y="130" font-size="14" text-anchor="middle" fill="#0c4a6e">AI v3</text></g>
+                        <!-- Arrows -->
+                        <path d="M135 125 L 155 125 L 145 118 M 155 125 L 145 132" stroke="#0ea5e9" stroke-width="2" fill="none" style="animation-delay: 0.4s;"/>
+                        <path d="M245 125 L 245 125 L 255 125 L 245 118 M 255 125 L 245 132" stroke="#0ea5e9" stroke-width="2" fill="none" style="animation-delay: 0.5s;"/>
+                        <path d="M325 70 C 380 70, 380 180, 325 180" stroke="#38bdf8" stroke-width="2" fill="none" style="animation-delay: 0.6s;"/>
+                        <path d="M325 70 L 318 75 M 325 70 L 332 75" stroke="#38bdf8" stroke-width="2" fill="none" style="animation-delay: 0.6s;"/>
+                        <text x="200" y="40" font-size="16" font-weight="bold" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.7s;">自我優化循環</text>
+                    </svg>`
+            },
+            {
+                title: '倫理挑戰',
+                description: '當AI決策出錯，誰該負責？如何避免核心技能退化？人機情感連結的準則為何？皆是導入前需深思的課題。',
+                source: '來源: Rakesh Patel / Ken Masters',
+                svg: `
+                     <svg viewBox="0 0 400 250" class="w-full h-auto max-w-sm svg-animate">
+                        <!-- Scales -->
+                        <path d="M50 50 L 350 50" stroke="#94a3b8" stroke-width="4" style="animation-delay: 0.1s;"/>
+                        <path d="M200 50 L 200 80" stroke="#94a3b8" stroke-width="4" style="animation-delay: 0.2s;"/>
+                        <path d="M50 80 L 150 80 L 100 180 Z" fill="#e0f2fe" style="animation-delay: 0.3s;"/>
+                        <path d="M250 80 L 350 80 L 300 180 Z" fill="#e0f2fe" style="animation-delay: 0.4s;"/>
+                        <path d="M50 50 L 100 80 M350 50 L 300 80" stroke="#94a3b8" stroke-width="3" fill="none"/>
+                        <!-- Content -->
+                        <text x="100" y="130" font-size="40" text-anchor="middle" style="animation-delay: 0.5s;">🤖</text>
+                        <text x="300" y="130" font-size="40" text-anchor="middle" style="animation-delay: 0.6s;">🧑‍⚕️</text>
+                        <text x="200" y="150" font-size="60" text-anchor="middle" fill="#f43f5e" style="animation-delay: 0.7s;">?</text>
+                        <text x="100" y="210" font-size="12" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.8s;">AI 決策</text>
+                        <text x="300" y="210" font-size="12" text-anchor="middle" fill="#0c4a6e" style="animation-delay: 0.8s;">人類責任</text>
+                    </svg>`
+            }
+        ];
+
+        const carouselContainer = document.getElementById('insightsCarousel');
+        const dotsContainer = document.getElementById('carouselDots');
+        let currentSlide = 0;
+
+        function createSlides() {
+            insightsData.forEach((insight, index) => {
+                // Create Slide
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide w-full h-full flex-col md:flex-row items-center justify-center p-4 gap-4';
+                slide.innerHTML = `
+                    <div class="w-full md:w-1/2 flex items-center justify-center">${insight.svg}</div>
+                    <div class="w-full md:w-1/2 text-center md:text-left">
+                        <h3 class="text-3xl lg:text-4xl font-bold text-slate-700">${insight.title}</h3>
+                        <p class="text-slate-600 text-lg lg:text-xl my-4">${insight.description}</p>
+                        <footer class="text-sm text-sky-700 mt-4">${insight.source}</footer>
+                    </div>
+                `;
+                carouselContainer.appendChild(slide);
+
+                // Create Dot
+                const dot = document.createElement('button');
+                dot.className = 'w-3 h-3 rounded-full transition';
+                dot.dataset.index = index;
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('#carouselDots button');
+            
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-sky-600', i === index);
+                dot.classList.toggle('bg-sky-200', i !== index);
+            });
+            currentSlide = index;
+        }
+        
+        createSlides();
+        showSlide(0);
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            showSlide((currentSlide + 1) % insightsData.length);
         });
 
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
-            observer.observe(el);
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            showSlide((currentSlide - 1 + insightsData.length) % insightsData.length);
         });
+
+        dotsContainer.addEventListener('click', (e) => {
+            if(e.target.tagName === 'BUTTON'){
+                showSlide(parseInt(e.target.dataset.index));
+            }
+        });
+
     </script>
-
 </body>
 </html>
 
