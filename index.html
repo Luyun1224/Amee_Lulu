@@ -32,7 +32,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            padding: 1rem; /* 減少 padding 避免內容溢出 */
+            padding: 1rem;
             box-sizing: border-box;
             position: relative; 
         }
@@ -49,30 +49,37 @@
             transform: translateY(0);
         }
 
-        /* 自訂漸層文字 */
-        .gradient-text {
-            background-image: linear-gradient(90deg, #38bdf8, #ec4899);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
         /* 隱藏滾動條 */
         .scroll-container::-webkit-scrollbar { display: none; }
         .scroll-container { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* 粒子背景 */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .content-on-top {
+            position: relative;
+            z-index: 1;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="scroll-container">
 
-        <!-- Section 1: 開場 -->
-        <section class="scroll-section bg-slate-50 text-center">
-            <div class="reveal-on-scroll">
-                <h1 class="text-7xl md:text-9xl font-black gradient-text mb-4">AMEE 2025</h1>
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-6">智慧醫療教育洞見報告</h2>
-                <p class="text-2xl text-slate-600">引領奇美醫院邁向新紀元</p>
-                <div class="mt-12 text-slate-500 animate-bounce">
+        <!-- Section 1: 開場 (全新設計) -->
+        <section class="scroll-section bg-gradient-to-br from-slate-900 to-slate-800 text-center">
+            <div id="particles-js"></div>
+            <div class="reveal-on-scroll content-on-top">
+                <h1 class="text-7xl md:text-9xl font-black text-white mb-4" style="text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);">AMEE 2025</h1>
+                <h2 class="text-4xl md:text-5xl font-bold text-sky-300 mb-6">智慧醫療教育洞見報告</h2>
+                <p class="text-2xl text-slate-300">教學部 盧英云教學行政管理員</p>
+                <div class="mt-12 text-slate-400 animate-bounce">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -80,7 +87,7 @@
             </div>
         </section>
 
-        <!-- Section 2: 核心洞見 -->
+        <!-- Section 2: 核心洞見 (放大版) -->
         <section class="scroll-section bg-sky-50">
             <div class="w-full max-w-7xl mx-auto">
                 <div class="reveal-on-scroll">
@@ -88,33 +95,33 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
                         
                         <div>
-                            <span class="text-7xl">🤖</span>
-                            <h3 class="text-2xl font-bold mt-4 mb-2 text-slate-700">AI 考官</h3>
-                            <p class="text-slate-600 text-base px-2">最佳模式為「人機協作」，由AI初篩，人類專家做最終裁決，大幅提升評分效率與信度。</p>
+                            <span class="text-8xl">🤖</span>
+                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">AI 考官</h3>
+                            <p class="text-slate-600 text-lg px-2">最佳模式為「人機協作」，由AI初篩，人類專家做最終裁決，大幅提升評分效率與信度。</p>
                         </div>
                         
                         <div>
-                            <span class="text-7xl">🎮</span>
-                            <h3 class="text-2xl font-bold mt-4 mb-2 text-slate-700">遊戲化學習</h3>
-                            <p class="text-slate-600 text-base px-2">線上密室逃脫等方式，證實能將國考失敗率從35%降至22%，有效驅動學習成效。</p>
+                            <span class="text-8xl">🎮</span>
+                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">遊戲化學習</h3>
+                            <p class="text-slate-600 text-lg px-2">線上密室逃脫等方式，證實能將國考失敗率從35%降至22%，有效驅動學習成效。</p>
                         </div>
                         
                         <div>
-                            <span class="text-7xl">📈</span>
-                            <h3 class="text-2xl font-bold mt-4 mb-2 text-slate-700">數據驅動</h3>
-                            <p class="text-slate-600 text-base px-2">AI能以>80%的準確率預測PGY留任率，並將OSCE評分信度提升至近乎完美(Kappa 0.8)。</p>
+                            <span class="text-8xl">📈</span>
+                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">數據驅動</h3>
+                            <p class="text-slate-600 text-lg px-2">AI能以>80%的準確率預測PGY留任率，並將OSCE評分信度提升至近乎完美(Kappa 0.8)。</p>
                         </div>
                         
                         <div>
-                            <span class="text-7xl">🚀</span>
-                            <h3 class="text-2xl font-bold mt-4 mb-2 text-slate-700">遞迴學習</h3>
-                            <p class="text-slate-600 text-base px-2">AI將學會「自我進化」！此概念為設計能持續迭代的個人化、自適應教學系統提供了藍圖。</p>
+                            <span class="text-8xl">🚀</span>
+                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">遞迴學習</h3>
+                            <p class="text-slate-600 text-lg px-2">AI將學會「自我進化」！此概念為設計能持續迭代的個人化、自適應教學系統提供了藍圖。</p>
                         </div>
                         
                         <div>
-                            <span class="text-7xl">⚖️</span>
-                            <h3 class="text-2xl font-bold mt-4 mb-2 text-slate-700">倫理挑戰</h3>
-                            <p class="text-slate-600 text-base px-2">當AI決策出錯，誰該負責？如何避免核心技能退化？人機情感連結的準則為何？皆是導入前需深思的課題。</p>
+                            <span class="text-8xl">⚖️</span>
+                            <h3 class="text-3xl font-bold mt-4 mb-2 text-slate-700">倫理挑戰</h3>
+                            <p class="text-slate-600 text-lg px-2">當AI決策出錯，誰該負責？如何避免核心技能退化？人機情感連結的準則為何？皆是導入前需深思的課題。</p>
                         </div>
 
                     </div>
@@ -122,7 +129,7 @@
             </div>
         </section>
         
-        <!-- Section 3: 導入行動方案 (1-3) -->
+        <!-- Section 3: 導入行動方案 (1-3) (放大版) -->
         <section class="scroll-section bg-rose-50">
             <div class="w-full max-w-7xl mx-auto">
                 <div class="reveal-on-scroll">
@@ -131,37 +138,37 @@
 
                         <!-- Card 1 -->
                         <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center relative">
-                            <div class="absolute top-0 left-0 -mt-4 -ml-4 w-14 h-14 bg-rose-600 text-white text-3xl font-bold flex items-center justify-center rounded-full shadow-lg">1</div>
-                            <span class="text-6xl">🎲</span>
-                            <h3 class="text-2xl font-bold my-3 text-slate-800">推動遊戲化教學</h3>
-                            <p class="text-slate-600 mb-4 text-base">改造院內必修課程，將學習變得更有趣、更有效。</p>
-                            <div class="mt-auto w-full bg-rose-100 p-3 rounded-lg">
-                                <p class="text-sm font-bold text-rose-700">AMEE 洞見</p>
-                                <p class="text-sm text-rose-600">線上桌遊將國考失敗率從 <span class="font-bold text-lg">35%</span> 降至 <span class="font-bold text-lg">22%</span></p>
+                            <div class="absolute top-0 left-0 -mt-4 -ml-4 w-16 h-16 bg-rose-600 text-white text-4xl font-bold flex items-center justify-center rounded-full shadow-lg">1</div>
+                            <span class="text-7xl">🎲</span>
+                            <h3 class="text-3xl font-bold my-3 text-slate-800">推動遊戲化教學</h3>
+                            <p class="text-slate-600 mb-4 text-lg">改造院內必修課程，將學習變得更有趣、更有效。</p>
+                            <div class="mt-auto w-full bg-rose-100 p-4 rounded-lg">
+                                <p class="text-base font-bold text-rose-700">AMEE 洞見</p>
+                                <p class="text-base text-rose-600">線上桌遊將國考失敗率從 <span class="font-bold text-xl">35%</span> 降至 <span class="font-bold text-xl">22%</span></p>
                             </div>
                         </div>
                         
                         <!-- Card 2 -->
                         <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center relative">
-                             <div class="absolute top-0 left-0 -mt-4 -ml-4 w-14 h-14 bg-rose-600 text-white text-3xl font-bold flex items-center justify-center rounded-full shadow-lg">2</div>
-                             <span class="text-6xl">📊</span>
-                            <h3 class="text-2xl font-bold my-3 text-slate-800">建置數位化評量平台</h3>
-                            <p class="text-slate-600 mb-4 text-base">將OSCE等評量全面數位化，為AI分析與遞迴學習奠定基礎。</p>
-                            <div class="mt-auto w-full bg-rose-100 p-3 rounded-lg flex items-center justify-center space-x-2">
-                                <svg class="w-8 h-8 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-base font-bold text-rose-700">實現即時回饋與追蹤</p>
+                             <div class="absolute top-0 left-0 -mt-4 -ml-4 w-16 h-16 bg-rose-600 text-white text-4xl font-bold flex items-center justify-center rounded-full shadow-lg">2</div>
+                             <span class="text-7xl">📊</span>
+                            <h3 class="text-3xl font-bold my-3 text-slate-800">建置數位化評量平台</h3>
+                            <p class="text-slate-600 mb-4 text-lg">將OSCE等評量全面數位化，為AI分析與遞迴學習奠定基礎。</p>
+                            <div class="mt-auto w-full bg-rose-100 p-4 rounded-lg flex items-center justify-center space-x-3">
+                                <svg class="w-10 h-10 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <p class="text-lg font-bold text-rose-700">實現即時回饋與追蹤</p>
                             </div>
                         </div>
 
                         <!-- Card 3 -->
                         <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center relative">
-                            <div class="absolute top-0 left-0 -mt-4 -ml-4 w-14 h-14 bg-rose-600 text-white text-3xl font-bold flex items-center justify-center rounded-full shadow-lg">3</div>
-                            <span class="text-6xl">🧠</span>
-                            <h3 class="text-2xl font-bold my-3 text-slate-800">發展遞迴模型</h3>
-                            <p class="text-slate-600 mb-4 text-base">打造能自我進化的「AI虛擬導師」與「OSCE教案遞迴開發模型」。</p>
-                             <div class="mt-auto w-full bg-rose-100 p-3 rounded-lg">
-                                <p class="text-sm font-bold text-rose-700">遞迴開發循環</p>
-                                <p class="text-sm text-rose-600">AI開發 → AI測試 → 專家審核 → AI優化</p>
+                            <div class="absolute top-0 left-0 -mt-4 -ml-4 w-16 h-16 bg-rose-600 text-white text-4xl font-bold flex items-center justify-center rounded-full shadow-lg">3</div>
+                            <span class="text-7xl">🧠</span>
+                            <h3 class="text-3xl font-bold my-3 text-slate-800">發展遞迴模型</h3>
+                            <p class="text-slate-600 mb-4 text-lg">打造能自我進化的「AI虛擬導師」與「OSCE教案遞迴開發模型」。</p>
+                             <div class="mt-auto w-full bg-rose-100 p-4 rounded-lg">
+                                <p class="text-base font-bold text-rose-700">遞迴開發循環</p>
+                                <p class="text-base text-rose-600">AI開發 → AI測試 → 專家審核 → AI優化</p>
                             </div>
                         </div>
                     </div>
@@ -169,7 +176,7 @@
             </div>
         </section>
 
-        <!-- Section 4: 導入行動方案 (4-5) -->
+        <!-- Section 4: 導入行動方案 (4-5) (放大版) -->
         <section class="scroll-section bg-amber-50">
              <div class="w-full max-w-7xl mx-auto">
                 <div class="reveal-on-scroll">
@@ -178,31 +185,31 @@
 
                         <!-- Card 4 -->
                         <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center relative">
-                             <div class="absolute top-0 left-0 -mt-4 -ml-4 w-14 h-14 bg-amber-600 text-white text-3xl font-bold flex items-center justify-center rounded-full shadow-lg">4</div>
-                             <span class="text-6xl">🎯</span>
-                            <h3 class="text-2xl font-bold my-3 text-slate-800">建立數據預測模型</h3>
-                            <p class="text-slate-600 mb-4 text-base">整合學員評量數據，從被動管理轉向主動預測與早期介入。</p>
-                            <div class="mt-auto w-full bg-amber-100 p-3 rounded-lg grid grid-cols-2 gap-2 text-sm">
+                             <div class="absolute top-0 left-0 -mt-4 -ml-4 w-16 h-16 bg-amber-600 text-white text-4xl font-bold flex items-center justify-center rounded-full shadow-lg">4</div>
+                             <span class="text-7xl">🎯</span>
+                            <h3 class="text-3xl font-bold my-3 text-slate-800">建立數據預測模型</h3>
+                            <p class="text-slate-600 mb-4 text-lg">整合學員評量數據，從被動管理轉向主動預測與早期介入。</p>
+                            <div class="mt-auto w-full bg-amber-100 p-4 rounded-lg grid grid-cols-2 gap-2 text-base">
                                 <div class="text-amber-700 font-bold border-r border-amber-300 pr-2">
                                     <p>預測學習成效</p>
-                                    <p class="text-amber-600 text-sm">識別學習瓶頸<br>提供個人化輔導</p>
+                                    <p class="text-amber-600 text-base">識別學習瓶頸<br>提供個人化輔導</p>
                                 </div>
                                 <div class="text-amber-700 font-bold pl-2">
                                      <p>預測人才留任</p>
-                                     <p class="text-amber-600 text-sm">>80% 準確率<br>及早啟動關懷機制</p>
+                                     <p class="text-amber-600 text-base">>80% 準確率<br>及早啟動關懷機制</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 5 -->
                         <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center relative">
-                            <div class="absolute top-0 left-0 -mt-4 -ml-4 w-14 h-14 bg-amber-600 text-white text-3xl font-bold flex items-center justify-center rounded-full shadow-lg">5</div>
-                            <span class="text-6xl">🎓</span>
-                            <h3 class="text-2xl font-bold my-3 text-slate-800">普及全院 AI 素養</h3>
-                            <p class="text-slate-600 mb-4 text-base">教導同仁如何高效、安全地與AI協作，將挑戰轉化為競爭力。</p>
-                            <div class="mt-auto w-full bg-amber-100 p-3 rounded-lg">
-                                <p class="text-sm font-bold text-amber-700">關鍵能力</p>
-                                <p class="text-sm text-amber-600">提示工程 (Prompting) & 批判性解讀</p>
+                            <div class="absolute top-0 left-0 -mt-4 -ml-4 w-16 h-16 bg-amber-600 text-white text-4xl font-bold flex items-center justify-center rounded-full shadow-lg">5</div>
+                            <span class="text-7xl">🎓</span>
+                            <h3 class="text-3xl font-bold my-3 text-slate-800">普及全院 AI 素養</h3>
+                            <p class="text-slate-600 mb-4 text-lg">教導同仁如何高效、安全地與AI協作，將挑戰轉化為競爭力。</p>
+                            <div class="mt-auto w-full bg-amber-100 p-4 rounded-lg">
+                                <p class="text-base font-bold text-amber-700">關鍵能力</p>
+                                <p class="text-base text-amber-600">提示工程 (Prompting) & 批判性解讀</p>
                             </div>
                         </div>
                     </div>
@@ -212,7 +219,114 @@
 
     </div>
 
+    <!-- particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // 初始化 particles.js
+        particlesJS("particles-js", {
+          "particles": {
+            "number": {
+              "value": 80,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ffffff"
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              },
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                "enable": false,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+              "anim": {
+                "enable": false,
+                "speed": 40,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#ffffff",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 2,
+              "direction": "none",
+              "random": false,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "repulse"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 400,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 400,
+                "size": 40,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+              },
+              "repulse": {
+                "distance": 200,
+                "duration": 0.4
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true
+        });
+
+        // 動畫觸發
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const target = entry.target;
@@ -237,4 +351,5 @@
 
 </body>
 </html>
+
 
